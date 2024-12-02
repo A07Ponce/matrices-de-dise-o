@@ -1,0 +1,9 @@
+.custom-paragraph {
+    color: blue; /* Color del texto */
+    font-size: 20px; /* Tamaño de la fuente */
+    background-color: lightgray; /* Fondo */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center; /* Centra el texto */
+    font-weight: bold; /* Texto en negrita */
+}
