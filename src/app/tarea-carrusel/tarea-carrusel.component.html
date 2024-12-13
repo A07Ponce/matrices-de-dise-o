@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .carousel-container {
+            width: 80%; /* Ajustado para que ocupe más espacio */
+            overflow: hidden;
+            position: relative;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            width: 100%; /* Hace que cada producto ocupe todo el ancho disponible */
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .carousel-item img {
+            width: 100%; /* La imagen ocupa el 100% del espacio del producto */
+            height: 250px; /* Altura fija para que las imágenes tengan un tamaño uniforme */
+            object-fit: cover; /* Ajusta la imagen para no distorsionarse */
+            border-radius: 10px;
+        }
+
+        .carousel-item h3 {
+            margin: 10px 0 5px;
+        }
+
+        .carousel-item p {
+            margin: 5px 0;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .stock {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .in-stock {
+            background: #4caf50;
+            color: white;
+        }
+
+        .out-of-stock {
+            background: #f44336;
+            color: white;
+        }
+
+        .buttons {
+            margin-top: 15px;
+        }
+
+        .buttons button {
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 8px;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .buttons button:hover {
+            background: #ddd;
+        }
+
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .control {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 1.5em;
+            border-radius: 50%;
+        }
+
+        .control:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <div class="carousel-item">
+                <img src="https://nicoshohoku.cl/wp-content/uploads/2023/04/Japan-U20.jpg" alt="Producto 1">
+                <h3>Producto 1</h3>
+                <p>$100</p>
+                <span class="stock in-stock">In Stock</span>
+                <div class="buttons">
+                    <button>❤️</button>
+                    <button>🛒</button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmMRAQWQ1l80Ze-LNPZ9Ur4rPHZw9J7QNOrw&s" alt="Producto 2">
+                <h3>Producto 2</h3>
+                <p>$150</p>
+                <span class="stock out-of-stock">Out of Stock</span>
+                <div class="buttons">
+                    <button>❤️</button>
+                    <button>🛒</button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://nicoshohoku.cl/wp-content/uploads/2023/04/Ubers.jpg" alt="Producto 3">
+                <h3>Producto 3</h3>
+                <p>$200</p>
+                <span class="stock in-stock">In Stock</span>
+                <div class="buttons">
+                    <button>❤️</button>
+                    <button>🛒</button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://m.media-amazon.com/images/I/51IDCUERCKL._AC_UY1000_.jpg" alt="Producto 4">
+                <h3>Producto 4</h3>
+                <p>$250</p>
+                <span class="stock out-of-stock">Out of Stock</span>
+                <div class="buttons">
+                    <button>❤️</button>
+                    <button>🛒</button>
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="control" id="prev">❮</button>
+            <button class="control" id="next">❯</button>
+        </div>
+    </div>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+        const prev = document.getElementById('prev');
+        const next = document.getElementById('next');
+
+        let index = 0;
+
+        function updateCarousel() {
+            const totalItems = carousel.children.length;
+            // Prevent index from exceeding total items or going negative
+            if (index < 0) index = totalItems - 1;
+            if (index >= totalItems) index = 0;
+            carousel.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        prev.addEventListener('click', () => {
+            index--;
+            updateCarousel();
+        });
+
+        next.addEventListener('click', () => {
+            index++;
+            updateCarousel();
+        });
+    </script>
+</body>
+</html>
